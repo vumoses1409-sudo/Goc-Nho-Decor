@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Góc Nhỏ Decor - Biến góc nhỏ thành nơi trú ẩn cực chill</title>
+    
+    <!-- Lấy font Quicksand từ Google Fonts để tạo cảm giác Gen Z, mềm mại, dễ thương -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome cho Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Cài đặt Tailwind CSS qua CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Cấu hình custom theme cho Tailwind (Màu sắc pastel chuẩn Hàn Quốc, font chữ, shadow mềm) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        'cream': '#FCF9F2',     /* Nền be sáng ấm */
+                        'matcha': '#A3B18A',    /* Xanh matcha dịu */
+                        'matcha-dark': '#8A9A5B',
+                        'peach': '#F4A261',     /* Cam đào nhấn */
+                        'latte': '#DDA15E',
+                        'text-main': '#4A4A4A', /* Xám đậm thay vì đen gắt */
+                        'text-muted': '#7A7A7A'
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'float': '0 20px 40px -5px rgba(0,0,0,0.1)',
+                    },
+                    transitionTimingFunction: {
+                        'bouncy': 'cubic-bezier(0.175, 0.885, 0.32, 1.275)', /* Hiệu ứng nảy đặc trưng */
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FCF9F2; /* Màu cream */
+            color: #4A4A4A;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ẩn thanh cuộn nhưng vẫn cho cuộn (thẩm mỹ) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FCF9F2; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #DDA15E; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #F4A261; 
+        }
+
+        /* Lớp nền Pattern nhẹ nhàng cho Hero Section */
+        .bg-pattern {
+            background-image: radial-gradient(#A3B18A 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-color: #fcf9f2;
+        }
+
+        /* Class tiện ích cho hiệu ứng nảy */
+        .hover-bouncy {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .hover-bouncy:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -5px rgba(163, 177, 138, 0.4); /* Bóng xanh matcha */
+        }
+    </style>
+</head>
+<body class="font-sans">
+
+    <header class="fixed w-full top-0 z-50 bg-cream/80 backdrop-blur-md border-b border-white/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform duration-300">
+                <div class="w-10 h-10 bg-matcha rounded-xl flex items-center justify-center text-white text-xl shadow-md rotate-3">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+                <span class="text-2xl font-bold tracking-tight text-text-main">Góc Nhỏ <span class="text-matcha">Decor</span></span>
+            </div>
+
+            <!-- Navigation Links (Desktop) -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="text-text-main font-semibold hover:text-matcha transition-colors">Trang chủ</a>
+                <a href="#products" class="text-text-main font-semibold hover:text-matcha transition-colors">Sản phẩm</a>
+                <a href="#categories" class="text-text-main font-semibold hover:text-matcha transition-colors">Góc Chill</a>
+                <a href="#" class="text-peach font-semibold hover:text-latte transition-colors">Khuyến mãi <i class="fa-solid fa-fire text-sm"></i></a>
+            </nav>
+
+            <!-- Cart Icon & Mobile Menu -->
+            <div class="flex items-center gap-4">
+                <button class="relative p-2 rounded-full hover:bg-white transition-colors duration-300 group">
+                    <i class="fa-solid fa-basket-shopping text-xl text-text-main group-hover:text-matcha transition-colors"></i>
+                    <span class="absolute top-0 right-0 w-5 h-5 bg-peach text-white text-xs font-bold rounded-full flex items-center justify-center border-2 border-cream">2</span>
+                </button>
+                <button class="md:hidden text-text-main text-2xl p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Thêm padding top để bù cho fixed header -->
+    <main class="pt-20">
+
+        <section class="relative bg-pattern py-16 sm:py-24 overflow-hidden">
+            <!-- Blob trang trí góc -->
+            <div class="absolute top-0 left-0 w-64 h-64 bg-matcha/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+            <div class="absolute top-0 right-0 w-64 h-64 bg-peach/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center gap-12">
+                
+                <!-- Text Content -->
+                <div class="w-full md:w-1/2 text-center md:text-left">
+                    <div class="inline-block px-4 py-2 bg-white rounded-full text-matcha font-bold text-sm shadow-sm mb-6 border border-matcha/20">
+                        ✨ Phong cách Tối giản & Hàn Quốc
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        Biến góc nhỏ thành<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-matcha-dark to-matcha">nơi trú ẩn cực chill</span>
+                    </h1>
+                    <p class="text-lg text-text-muted mb-8 max-w-md mx-auto md:mx-0">
+                        Decor bàn học & làm việc chuẩn gu, giá hạt dẻ. Nâng cấp không gian, khơi nguồn cảm hứng mỗi ngày.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+                        <a href="#products" class="w-full sm:w-auto px-8 py-4 bg-matcha hover:bg-matcha-dark text-white rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 text-center">
+                            Sắm Đồ Ngay <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Image / Visuals -->
+                <div class="w-full md:w-1/2">
+                    <div class="relative">
+                        <!-- Vòng tròn trang trí sau ảnh -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-peach/30 to-matcha/30 rounded-[3rem] transform rotate-6 scale-105"></div>
+                        <!-- Ảnh chính (dùng placehold có màu sắc vintage/pastel) -->
+                        <img src="https://placehold.co/600x500/EADEC8/4A4A4A?text=Goc+Lam+Viec+Chill" alt="Góc làm việc decor" class="relative rounded-[3rem] shadow-float w-full object-cover border-4 border-white z-10 hover-bouncy">
+                        
+                        <!-- Floating badge -->
+                        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-soft z-20 flex items-center gap-3 hover:-translate-y-2 transition-transform duration-300">
+                            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-peach text-2xl">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-text-main text-sm">Best Seller</p>
+                                <p class="text-xs text-text-muted">Được yêu thích nhất</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="categories" class="py-16 bg-white rounded-t-[3rem] -mt-8 relative z-20 shadow-soft">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Bạn đang tìm đồ cho không gian nào?</h2>
+                    <p class="text-text-muted">Chọn ngách không gian để Góc Nhỏ gợi ý đồ decor chuẩn nhất nhé!</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Category Card 1 -->
+                    <div class="bg-orange-50 rounded-[2rem] p-8 text-center hover-bouncy cursor-pointer border border-transparent hover:border-orange-200">
+                        <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm mb-6">
+                            <i class="fa-solid fa-book-open text-3xl text-latte"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Góc Học Tập</h3>
+                        <p class="text-sm text-text-muted">Gọn gàng, tối giản, khơi dậy năng lượng tập trung chạy deadline.</p>
+                    </div>
+                    
+                    <!-- Category Card 2 -->
+                    <div class="bg-green-50 rounded-[2rem] p-8 text-center hover-bouncy cursor-pointer border border-transparent hover:border-green-200">
+                        <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm mb-6">
+                            <i class="fa-solid fa-laptop-code text-3xl text-matcha"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Bàn Làm Việc</h3>
+                        <p class="text-sm text-text-muted">Chuyên nghiệp nhưng vẫn ấm cúng, chuẩn phong cách WFH.</p>
+                    </div>
+
+                    <!-- Category Card 3 -->
+                    <div class="bg-red-50 rounded-[2rem] p-8 text-center hover-bouncy cursor-pointer border border-transparent hover:border-red-200">
+                        <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm mb-6">
+                            <i class="fa-solid fa-mug-hot text-3xl text-peach"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Phụ Kiện Chill</h3>
+                        <p class="text-sm text-text-muted">Nến thơm, đèn led, tranh canvas... gia vị cho tâm hồn.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="py-20 bg-cream">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-end mb-12">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-2">Hàng mới về kệ 📦</h2>
+                        <p class="text-text-muted">Những món đồ đang được giới trẻ săn lùng nhiều nhất tuần qua.</p>
+                    </div>
+                    <a href="#" class="hidden sm:inline-block text-matcha font-bold hover:text-matcha-dark transition-colors border-b-2 border-matcha border-dashed pb-1">
+                        Xem tất cả <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <!-- Product 1 -->
+                    <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-soft transition-all duration-300 group">
+                        <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[4/5] bg-gray-100">
+                            <img src="https://placehold.co/400x500/E8E3D8/4A4A4A?text=Ke+Go" alt="Kệ gỗ máy tính" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <!-- Nút thả tim -->
+                            <button class="absolute top-3 right-3 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-text-muted hover:text-red-500 transition-colors shadow-sm">
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="px-2">
+                            <h3 class="font-bold text-lg text-text-main truncate mb-1">Kệ Gỗ Máy Tính Tối Giản</h3>
+                            <div class="flex items-center gap-1 text-yellow-400 text-sm mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="text-text-muted text-xs ml-1">(120)</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="font-bold text-xl text-peach">199.000đ</span>
+                                <button class="w-10 h-10 bg-cream text-matcha rounded-xl hover:bg-matcha hover:text-white transition-colors duration-300 flex items-center justify-center">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-soft transition-all duration-300 group">
+                        <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[4/5] bg-gray-100">
+                            <!-- Label Sale -->
+                            <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">-15%</span>
+                            <img src="https://placehold.co/400x500/DDE3D6/4A4A4A?text=Den+Ban" alt="Đèn Bàn Cảm Ứng Decor" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <button class="absolute top-3 right-3 z-10 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-text-muted hover:text-red-500 transition-colors shadow-sm">
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="px-2">
+                            <h3 class="font-bold text-lg text-text-main truncate mb-1">Đèn Bàn Cảm Ứng</h3>
+                            <div class="flex items-center gap-1 text-yellow-400 text-sm mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star-half-stroke"></i>
+                                <span class="text-text-muted text-xs ml-1">(85)</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-2">
+                                <div class="flex flex-col">
+                                    <span class="font-bold text-xl text-peach">250.000đ</span>
+                                    <span class="text-xs text-text-muted line-through">295.000đ</span>
+                                </div>
+                                <button class="w-10 h-10 bg-cream text-matcha rounded-xl hover:bg-matcha hover:text-white transition-colors duration-300 flex items-center justify-center">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-soft transition-all duration-300 group">
+                        <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[4/5] bg-gray-100">
+                            <img src="https://placehold.co/400x500/F0E5DE/4A4A4A?text=Tham+Trai+San" alt="Thảm Trải Sàn Lông Cừu" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <button class="absolute top-3 right-3 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-text-muted hover:text-red-500 transition-colors shadow-sm">
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="px-2">
+                            <h3 class="font-bold text-lg text-text-main truncate mb-1">Thảm Sàn Lông Cừu</h3>
+                            <div class="flex items-center gap-1 text-yellow-400 text-sm mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <span class="text-text-muted text-xs ml-1">(210)</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="font-bold text-xl text-peach">150.000đ</span>
+                                <button class="w-10 h-10 bg-cream text-matcha rounded-xl hover:bg-matcha hover:text-white transition-colors duration-300 flex items-center justify-center">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-soft transition-all duration-300 group">
+                        <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[4/5] bg-gray-100">
+                            <img src="https://placehold.co/400x500/E3DBD2/4A4A4A?text=Bang+Ghim" alt="Bảng Ghim Ghi Chú Nỉ" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <button class="absolute top-3 right-3 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-text-muted hover:text-red-500 transition-colors shadow-sm">
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="px-2">
+                            <h3 class="font-bold text-lg text-text-main truncate mb-1">Bảng Ghim Ghi Chú Nỉ</h3>
+                            <div class="flex items-center gap-1 text-yellow-400 text-sm mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                                <span class="text-text-muted text-xs ml-1">(42)</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="font-bold text-xl text-peach">89.000đ</span>
+                                <button class="w-10 h-10 bg-cream text-matcha rounded-xl hover:bg-matcha hover:text-white transition-colors duration-300 flex items-center justify-center">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="mt-8 text-center sm:hidden">
+                    <a href="#" class="inline-block bg-white px-6 py-3 rounded-xl shadow-sm text-matcha font-bold border border-matcha/20">Xem tất cả sản phẩm</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white pt-16 pb-8 border-t border-gray-100 rounded-t-[3rem] shadow-[0_-10px_40px_-10px_rgba(0,0,0,0.05)]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 mb-12">
+                
+                <!-- Brand & SEO Description -->
+                <div class="md:col-span-5 lg:col-span-6">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-matcha rounded-lg flex items-center justify-center text-white text-sm rotate-3">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-text-main">Góc Nhỏ <span class="text-matcha">Decor</span></span>
+                    </div>
+                    <!-- Đoạn văn bản chuẩn SEO -->
+                    <p class="text-text-muted leading-relaxed mb-6 text-sm">
+                        <strong>Góc Nhỏ Decor</strong> - Chuyên đồ decor phòng ngủ, phòng trọ & bàn làm việc đẹp chuẩn phong cách Hàn Quốc, tối giản. Biến góc nhỏ thành nơi trú ẩn cực chill cùng đa dạng đèn trang trí, thảm, kệ gỗ và phụ kiện. Mua sắm dễ dàng, nhận ưu đãi Freeship toàn quốc ngay hôm nay!
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-cream flex items-center justify-center text-text-main hover:bg-matcha hover:text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-cream flex items-center justify-center text-text-main hover:bg-peach hover:text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-cream flex items-center justify-center text-text-main hover:bg-pink-400 hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="md:col-span-3 lg:col-span-3">
+                    <h4 class="font-bold text-lg mb-6">Khám Phá</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-text-muted hover:text-matcha transition-colors">Về chúng mình</a></li>
+                        <li><a href="#" class="text-text-muted hover:text-matcha transition-colors">Hàng mới về</a></li>
+                        <li><a href="#" class="text-text-muted hover:text-matcha transition-colors">Góc Blog & Tips Chill</a></li>
+                        <li><a href="#" class="text-text-muted hover:text-matcha transition-colors">Chính sách vận chuyển</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="md:col-span-4 lg:col-span-3">
+                    <h4 class="font-bold text-lg mb-6">Liên Hệ</h4>
+                    <ul class="space-y-4 text-text-muted">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-peach"></i>
+                            <span>123 Đường Decor, Quận X, TP. Hồ Chí Minh</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-peach"></i>
+                            <span>0909 123 456</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-peach"></i>
+                            <span>hello@gocnhodecor.vn</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-gray-100 text-center text-sm text-text-muted flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 Góc Nhỏ Decor. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <i class="fa-brands fa-cc-visa text-2xl opacity-50"></i>
+                    <i class="fa-brands fa-cc-mastercard text-2xl opacity-50"></i>
+                    <i class="fa-brands fa-cc-paypal text-2xl opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
